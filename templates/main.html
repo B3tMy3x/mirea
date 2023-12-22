@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}" type="image/png">
+    <title>DOTABLOG</title>
+</head>
+<body bgcolor="#2c2525">
+    <ul class="hr">
+        <li><a class="microheader_StandardButton_3mkXB" href="/login">
+            <div class="microheader_ButtonText_jIe9r">Войти</div>
+        </a></li>
+        <li><a class="microheader_StandardButton_3mkXB" href="/register">
+            <div class="microheader_ButtonText_jIe9r">Зарегистрироваться</div>
+        </a></li>
+    </ul>
+    <div class="main">
+        <h1 class="logo">DOTABLOG</h1>
+        <img src="{{ url_for('static', filename='logo.png') }}" width="250em" height="250em">
+    </div>
+</body>
+</html>

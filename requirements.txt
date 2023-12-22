@@ -1,0 +1,9 @@
+requests
+argparse
+flask
+flask-sqlalchemy
+flask_wtf
+flask-login
+SQLAlchemy
+WTForms
+sqlite

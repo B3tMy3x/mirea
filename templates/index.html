@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if current_user.is_authenticated %}
+    <br>
+    <a href="/news_edit" class="btn btn-outline-primary">Добавить новость</a>
+    <a href="/profile/{{ id }}" class="btn btn-outline-primary">Мой профиль</a>
+    <a href="/drafts" class="btn btn-outline-primary">Мои черновики</a>
+    <br>
+{% endif %}
+{% for item in news%}
+<br>
+<center>
+<div class="di1">
+    <h2>{{item.title}}</h2>
+    <div>
+        {{item.content}}
+    </div>
+    {% if item.build|length == 10 %}
+        <div>
+            1 прикрепленная сборка
+        </div>
+    {% endif %}
+    <div>
+        <a href='/profile/{{ item.user_id }}'><button type="button" class="btn btn-outline-light">Автор - {{item.user.name}}, Дата написания - {{item.created_date}}</button></a>
+    </div>
+    <br>
+    <div>
+    {% if (current_user.is_authenticated and current_user == item.user) or role == True%}
+        <a href="/news_edit/{{ item.id }}" class="btn btn-outline-primary">
+            Изменить
+        </a>
+        <a href="/news_delete/{{ item.id }}" class="btn btn-outline-danger">
+            Удалить
+        </a>
+    {% endif %}
+        <a href="/news/{{ item.id }}" class="btn btn-outline-primary">
+            Просмотр
+        </a>
+    </div>
+<br>
+</div>
+</center>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+    font-family: "Radiance","Noto Sans",sans-serif;
+}
+.logo {
+    color: #fff;
+    font-size: 10em;
+    font-family: "Reaver", serif;
+    }
+.main {
+    line-height: 0.2;
+    text-align: center;
+}
+
+.microheader_StandardButton_3mkXB .microheader_ButtonText_jIe9r {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+}
+
+.microheader_MicroHeader_U7wdC .microheader_HeaderContents_RsnZk .microheader_OptionsSide_11feq .microheader_PlayForFree_3viea .microheader_StandardButton_3mkXB {
+    margin: 10px 0px 10px 20px;
+}
+.microheader_StandardButton_3mkXB {
+    border: 3px solid #ffffff50;
+    padding: 15px 25px;
+    margin: 10px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition-duration: .2s;
+    text-decoration: none;
+}
+   ul.hr {
+    margin: 0; padding: 0;
+    direction: rtl
+   }
+   ul.hr li {
+    display: inline-block;
+    padding: 3px;
+   }
