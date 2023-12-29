@@ -5,13 +5,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class RegisterForm(FlaskForm):
-    email = EmailField('Почта', validators=[DataRequired()])
-    password = PasswordField('Пароль', validators=[DataRequired()])
-    password_again = PasswordField('Повторите пароль', validators=[DataRequired()])
-    name = StringField('Имя пользователя', validators=[DataRequired()])
+    email = EmailField(validators=[DataRequired()])
+    password = PasswordField(validators=[DataRequired()])
+    password_again = PasswordField(validators=[DataRequired()])
+    name = StringField(validators=[DataRequired()])
     about = TextAreaField("Немного о себе")
-    steam_id = StringField('DOTA ID', validators=[DataRequired()])
-    submit = SubmitField('Войти')
+    submit = SubmitField('Регистрация')
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

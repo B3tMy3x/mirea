@@ -4,8 +4,8 @@ from .db_session import SqlAlchemyBase
 association_table = sqlalchemy.Table(
     'association',
     SqlAlchemyBase.metadata,
-    sqlalchemy.Column('news', sqlalchemy.Integer,
-                      sqlalchemy.ForeignKey('news.id')),
+    sqlalchemy.Column('classes', sqlalchemy.Integer,
+                      sqlalchemy.ForeignKey('classes.id')),
     sqlalchemy.Column('category', sqlalchemy.Integer,
                       sqlalchemy.ForeignKey('category.id'))
 )
