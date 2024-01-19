@@ -1,39 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Добавление новости</h1>
+<h1 class="newstext">Добавление новости</h1>
 <form action="" method="post">
     {{ form.hidden_tag() }}
-    <p>
-        {{ form.title.label }}<br>
-        {{ form.title(class="form-control") }}<br>
+        <p class="news_form_text">{{ form.title.label }}<p>
+        {{ form.title(class="form") }}
         {% for error in form.title.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
             </p>
         {% endfor %}
-    </p>
-    <p>
-        {{ form.content.label }}<br>
-        {{ form.content(class="form-control") }}<br>
+        <p class="news_form_text">{{ form.content.label }}</p>
+        {{ form.content(class="form") }}
         {% for error in form.content.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
             </p>
         {% endfor %}
-    </p>
-    <p>
-        {{ form.build.label }}<br>
-        {{ form.build(class="form-control") }}<br>
-        {% for error in form.build.errors %}
+        <p class="news_form_text">{{ form.tags.label }}</p>
+        {{ form.tags(class="form") }}
+        {% for error in form.tags.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
             </p>
         {% endfor %}
-    </p>
     <p>{{ form.is_private() }} {{ form.is_private.label }}</p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    <a href="/profile/{{ current_user.id }}" class="violettext">
+        <button type="submit" class="loginbutton">
+            <span>
+            Опубликовать 
+            </span>
+    </button></a>
     {{message}}
-    <br>
 </form>
 {% endblock %}

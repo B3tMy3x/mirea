@@ -5,7 +5,7 @@ from flask import Flask, render_template, redirect, request, abort, flash, url_f
 from werkzeug.utils import secure_filename
 from data import db_session
 from data.users import User
-from data.classes import Classes, ClassesForm, ClassesprivForm
+from data.news import News, NewsForm, NewsprivForm
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from forms.login import LoginForm
 from forms.user import RegisterForm
@@ -16,8 +16,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '4827c890c1b84580a2efd2fb7257aa8d'
 login_manager = LoginManager()
 login_manager.init_app(app)
-UPLOAD_FOLDER = 'static/il/'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 
 def main():
@@ -31,9 +30,9 @@ def visit():
 
 
 @login_manager.user_loader
-def load_classes(user_id):
+def load_news(user_id):
     db_sess = db_session.create_session()
-    return db_sess.query(Classes).get(id)
+    return db_sess.query(News).get(id)
 
 
 @login_manager.user_loader
@@ -90,10 +89,29 @@ def reqister():
         return redirect('/login')
     return render_template('registration.html', title='Регистрация', form=form)
 
+@app.route('/news_edit',  methods=['GET', 'POST'])
+@login_required
+def add_news():
+    form = NewsForm()
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        news = News()
+        news.title = form.title.data
+        news.content = form.content.data
+        news.tags = form.tags.data
+        news.is_private = form.is_private.data
+        current_user.news.append(news)
+        db_sess.merge(current_user)
+        db_sess.commit()
+        return redirect('/feed')
+    return render_template('news_edit.html', title='Добавление новости',
+                           form=form)
 
 @app.route("/feed", methods=['GET', 'POST'])
 def feed():
-    return render_template('news.html', title='Новости')
+    db_sess = db_session.create_session()
+    news = db_sess.query(News).filter(News.is_private != True)
+    return render_template("news.html", news=news)
 
 
 if __name__ == '__main__':

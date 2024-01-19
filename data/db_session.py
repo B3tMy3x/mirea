@@ -24,7 +24,7 @@ def global_init(db_file):
     __factory = orm.sessionmaker(bind=engine)
 
     from . import users
-    from . import classes
+    from . import news
     from . import category
 
     SqlAlchemyBase.metadata.create_all(engine)

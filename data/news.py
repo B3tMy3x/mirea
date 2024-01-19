@@ -11,9 +11,13 @@ from wtforms.validators import DataRequired
 class NewsForm(FlaskForm):
     title = StringField('Заголовок', validators=[DataRequired()])
     content = TextAreaField("Содержание")
-    build = StringField("ID сборки из доты")
+    tags = StringField("Теги")
     is_private = BooleanField("Черновик")
     submit = SubmitField("Применить")
+
+
+class NewsprivForm(FlaskForm):
+    is_private = BooleanField("Приватная лекция")
 
 
 class News(SqlAlchemyBase):
@@ -25,13 +29,12 @@ class News(SqlAlchemyBase):
                            primary_key=True, autoincrement=True)
     title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     content = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    created_date = sqlalchemy.Column(sqlalchemy.DateTime,
-                                     default=datetime.datetime.now)
+    tags = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    a = str(datetime.datetime.now())
+    a = a[:19]
+    created_date = sqlalchemy.Column(sqlalchemy.String,
+                                     default=a)
     is_private = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
-
     user_id = sqlalchemy.Column(sqlalchemy.Integer,
                                 sqlalchemy.ForeignKey("users.id"))
-    build = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     user = orm.relationship('User')
-
-
