@@ -8,10 +8,7 @@
 </head>
 <header class="head">
     {% if current_user.is_authenticated %}
-    <div id="headmain" class="headmain">
-        <div class="headerbuttons"><img src="https://frontend-scripts.hb.bizmrg.com/assets/logo/geekbrains-logo-light.svg"></div>
-        <div class="headerbuttons"><img src="https://svgshare.com/i/107U.svg" width="186px" height="30px"></div>
-    <div id="headmain2" class="headmain">
+    <div id="headmain2" class="headermain">
         <div class="headerbuttons1">
             <a href="/logout" class="violettext">
             <button class="loginbutton">
@@ -20,57 +17,39 @@
                 </span>
         </button></a></div>
         <div class="headerbuttons1">
-            <a href="/createnewclass" class="violettext">
-            <button class="loginbutton">
-                <span>
-                Новый конспект
-                </span>
-            </button></a></div>
-        <div class="headerbuttons1">
             <a href="/profile/{{ current_user.id }}" class="violettext">
             <button class="loginbutton">
                 <span>
                 {{ current_user.name }}
                 </span>
         </button></a></div>
-        <div class="headerbuttons1">
-            <a href="/glossary/{{ current_user.id }}" class="violettext">
-                <button class="loginbutton">
-                    <span>
-                    Глоссарий
-                    </span>
-        </button></a></div>
     </div></div>
     {% else %}
-    <div id="headmain1" class="headmain">
-        <div class="headerbuttons"><img src="https://frontend-scripts.hb.bizmrg.com/assets/logo/geekbrains-logo-light.svg"></div>
-        <div class="headerbuttons"><img src="static/logo.svg" width="186px" height="30px"></div>
-        <div id="headmain1alt" class="headmain">
-            <div class="headerbuttons1">
-                <a href="/login" class="violettext">
-                <button class="loginbutton">
-                    <span>
-                    Войти
-                    </span>
-            </button></a></div>
+    <div id="headmain1alt" class="headermain">
         <div class="headerbuttons1">
-            <a href="/register" class="violettext">
-                <button class="loginbutton">
-                    <span>
-                    Регистрация
-                    </span>
-            </button></a></div>
-        </div>
-    {% endif %}
+            <a href="/login" class="violettext">
+            <button class="loginbutton">
+                <span>
+                Войти
+                </span>
+        </button></a></div>
+    <div class="headerbuttons1">
+        <a href="/register" class="violettext">
+            <button class="loginbutton">
+                <span>
+                Регистрация
+                </span>
+        </button></a></div>
     </div>
-</header>
-<body style="background-color: #161b22">
+    </header>
+    {% endif %}
+    <body style="margin: 0;">
     {% block content %}{% endblock %}
-</body>
+    </body>
 <footer>
     <div>
         <hr style="color: #6654d9;">
-        <p class="footer">© ALT F4</p>
+        <p class="footer">© Пудовкин Ярослав</p>
     </div>
 </footer>
 </html>

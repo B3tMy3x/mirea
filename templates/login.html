@@ -6,9 +6,8 @@
     <link rel="shortcut icon" href="/static/logosq.svg" type="image/png">
     <title>GeekBrainsProj</title>
 </head>
+<body class="bg-gradient">
     <div class="regform">
-    <a href="/" style="padding-left: 45px"><img src="https://frontend-scripts.hb.bizmrg.com/assets/logo/geekbrains-logo-light.svg"></a>
-    <a href="/"><img src="static/logo.svg" width="186px" height="30px"></a>
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <p>
@@ -28,8 +27,14 @@
                 {% endfor %}
             </p>
             <p>{{ form.remember_me() }} {{ form.remember_me.label(class="violettext") }}</p>
-            <p>{{ form.submit(type="submit", class="loginbutton1") }}</p>
-            <div>{{ message }}</div>
+            <div class="headerbuttons1">
+                <a style="text-decoration: none;">
+                <button class="loginbutton" type="submit" style="margin: auto;">
+                    <span>
+                    Войти
+                    </span>
+            </button></a></div>
+        {{ message }}
         </form>
-    </div>
+    </div></body>
 </html>

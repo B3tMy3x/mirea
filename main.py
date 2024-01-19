@@ -18,7 +18,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 UPLOAD_FOLDER = 'static/il/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = {'mp3', 'wav', 'aiff'}
 
 
 def main():
@@ -54,11 +53,11 @@ def login():
         user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
-            return redirect("/createnewclass")
+            return redirect("/feed  ")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
-    return render_template('login.html', title='Авторизация', form=form)
+    return render_template('login.html', title='Авторизация', form=form)    
 
 
 @app.route('/logout')
@@ -90,6 +89,11 @@ def reqister():
         db_sess.commit()
         return redirect('/login')
     return render_template('registration.html', title='Регистрация', form=form)
+
+
+@app.route("/feed", methods=['GET', 'POST'])
+def feed():
+    return render_template('news.html', title='Новости')
 
 
 if __name__ == '__main__':
