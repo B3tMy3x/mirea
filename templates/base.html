@@ -9,6 +9,8 @@
 <header class="head">
     {% if current_user.is_authenticated %}
     <div id="headmain2" class="headermain">
+        <div id="headmain" class="headmain">
+            <a href="/feed" class="headerbuttons"><h1 style="color: white;">ПатриоТЫ</h1></a>
         <div class="headerbuttons1">
             <a href="/logout" class="violettext">
             <button class="loginbutton">
@@ -21,6 +23,13 @@
             <button class="loginbutton">
                 <span>
                 {{ current_user.name }}
+                </span>
+        </button></a></div>
+        <div class="headerbuttons1">
+            <a href="/create_news" class="violettext">
+            <button class="loginbutton">
+                <span>
+                Создать новость
                 </span>
         </button></a></div>
     </div></div>

@@ -52,7 +52,7 @@ def login():
         user = db_sess.query(User).filter(User.email == form.email.data).first()
         if user and user.check_password(form.password.data):
             login_user(user, remember=form.remember_me.data)
-            return redirect("/feed  ")
+            return redirect("/feed")
         return render_template('login.html',
                                message="Неправильный логин или пароль",
                                form=form)
@@ -89,7 +89,7 @@ def reqister():
         return redirect('/login')
     return render_template('registration.html', title='Регистрация', form=form)
 
-@app.route('/news_edit',  methods=['GET', 'POST'])
+@app.route('/create_news',  methods=['GET', 'POST'])
 @login_required
 def add_news():
     form = NewsForm()
@@ -107,11 +107,35 @@ def add_news():
     return render_template('news_edit.html', title='Добавление новости',
                            form=form)
 
+
+
+@app.route('/news/<int:id>', methods=['GET', 'POST'])
+@login_required
+def viewing_news(id):
+    form = NewsForm()
+    if request.method == "GET":
+        db_sess = db_session.create_session()
+        news = db_sess.query(News).filter(News.id == id, News.is_private == False).first()
+        if news:
+            id = news.id
+            title = news.title
+            content = news.content
+            name = news.user
+            name = name.name
+            created_date = news.created_date
+            return render_template('view_news.html',
+                            id=id, title1=title, content=content,
+                            created_date=created_date, name=name,
+                            title='Новость <int:id>'
+                            )
+        else:
+            return render_template('notexist.html', title="Этой новости не сущетвует")
+
 @app.route("/feed", methods=['GET', 'POST'])
 def feed():
     db_sess = db_session.create_session()
-    news = db_sess.query(News).filter(News.is_private != True)
-    return render_template("news.html", news=news)
+    news = db_sess.query(News).filter(News.is_private == False)
+    return render_template("news.html", news=news, title='Главная')
 
 
 if __name__ == '__main__':

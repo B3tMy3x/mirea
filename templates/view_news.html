@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+    {% block content %}
+	<h1 class="newstext">Новость {{id}}</h1>
+    <div class="feed">
+        <div class="news" style="max-height: max-content;">
+        <h1 class="news_title">{{title1}}</h2>
+        <p class="news_text">{{content}}</p>
+        <a href="/profile/{{ id }}" style="width: 50px;"><p class="news_author">{{name}}</p></a>
+        <p class="news_date">Опубликовано {{created_date[:10]}} в {{created_date[11:16]}}</p>
+        </div>
+    </div>
+    {% endblock %}

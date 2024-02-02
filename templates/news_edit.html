@@ -12,7 +12,7 @@
             </p>
         {% endfor %}
         <p class="news_form_text">{{ form.content.label }}</p>
-        {{ form.content(class="form") }}
+        {{ form.content(class="form_sod") }}
         {% for error in form.content.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -25,9 +25,9 @@
                 {{ error }}
             </p>
         {% endfor %}
-    <p>{{ form.is_private() }} {{ form.is_private.label }}</p>
+    <p style="text-align: center">{{ form.is_private(style="margin: auto") }} {{ form.is_private.label }}</p>
     <a href="/profile/{{ current_user.id }}" class="violettext">
-        <button type="submit" class="loginbutton">
+        <button type="submit" class="loginbutton" style="margin: auto;">
             <span>
             Опубликовать 
             </span>
