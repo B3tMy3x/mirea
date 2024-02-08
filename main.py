@@ -81,6 +81,7 @@ def reqister():
                                    message="Такой пользователь уже есть")
         user = User(
             name=form.name.data,
+            about=form.about.data,
             email=form.email.data,
         )
         user.set_password(form.password.data)
@@ -92,20 +93,24 @@ def reqister():
 @app.route('/create_news',  methods=['GET', 'POST'])
 @login_required
 def add_news():
-    form = NewsForm()
-    if form.validate_on_submit():
-        db_sess = db_session.create_session()
-        news = News()
-        news.title = form.title.data
-        news.content = form.content.data
-        news.tags = form.tags.data
-        news.is_private = form.is_private.data
-        current_user.news.append(news)
-        db_sess.merge(current_user)
-        db_sess.commit()
-        return redirect('/feed')
-    return render_template('news_edit.html', title='Добавление новости',
-                           form=form)
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).filter(User.id == current_user.get_id()).first()
+    if user.is_admin == 1:
+        form = NewsForm()
+        if form.validate_on_submit():
+            db_sess = db_session.create_session()
+            news = News()
+            news.title = form.title.data
+            news.content = form.content.data
+            news.tags = form.tags.data
+            news.is_private = form.is_private.data
+            current_user.news.append(news)
+            db_sess.merge(current_user)
+            db_sess.commit()
+            return redirect('/feed')
+        return render_template('news_edit.html', title='Добавление новости',
+                               form=form)
+    return redirect('/feed')
 
 
 
@@ -130,6 +135,15 @@ def viewing_news(id):
                             )
         else:
             return render_template('notexist.html', title="Этой новости не сущетвует")
+
+@app.route('/profile/<int:id>', methods=['GET'])
+def viewing_profile(id):
+    db_sess = db_session.create_session()
+    user = db_sess.query(User).filter(User.id == id).first()
+    news = db_sess.query(News).filter(News.user_id == id, News.is_private != True)
+    return render_template('profile.html', news=news, user=user)
+
+
 
 @app.route("/feed", methods=['GET', 'POST'])
 def feed():

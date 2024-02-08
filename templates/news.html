@@ -1,21 +1,21 @@
-{% extends "base.html" %}
-    {% block content %}
-	<h1 class="newstext">Новости</h1>
-    <div class="feed">
-    {% for item in news%}
-        <div class="news">
-        <h1 class="news_title">{{item.title}}</h2>
-        <div class="headerbuttons1">
-        <a href="news/{{ item.id }}" class="violettext">
-            <button class="loginbutton" style="margin: auto;">
-                <span>
-                Показать полностью
-                </span>
-        </button></a></div>
-        <a href="/profile/{{ item.user_id }}" style="width: 50px;"><p class="news_author">{{item.user.name}}</p></a>
-        <p class="news_date">Опубликовано {{item.created_date[:10]}} в {{item.created_date[11:16]}}</p>
-        <p class="news_text">{{item.content}}</p>
+    {% extends "base.html" %}
+        {% block content %}
+        <h1 class="newstext">Новости</h1>
+        <div class="feed">
+        {% for item in news|reverse%}
+            <div class="news">
+            <h1 class="news_title">{{item.title}}</h2>
+            <div class="headerbuttons1">
+            <a href="news/{{ item.id }}" class="violettext">
+                <button class="loginbutton" style="margin: auto;">
+                    <span>
+                    Показать полностью
+                    </span>
+            </button></a></div>
+            <a href="/profile/{{ item.user_id }}" style="width: 50px;"><p class="news_author">{{item.user.name}}</p></a>
+            <p class="news_date">Опубликовано {{item.created_date[:10]}} в {{item.created_date[11:16]}}</p>
+            <p class="news_text">{{item.content}}</p>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    {% endblock %}
+        {% endblock %}

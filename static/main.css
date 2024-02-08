@@ -243,6 +243,7 @@ label span {
     margin: auto;
     font-size: 15px;
     min-width: 400px;
+    min-height: 128px;
 }
 
 .regform {
@@ -395,7 +396,7 @@ input[type=file]::file-selector-button:hover {
 }
 
 .feed {
-    min-height: 49em;
+    min-height: 36em;
 }
 
 .news {
@@ -431,7 +432,7 @@ input[type=file]::file-selector-button:hover {
     margin: 0;
     padding-left: 2%;
     padding-right: 2%;
-    color: black;
+    color: #0039A6;
     text-decoration: underline;
     font-weight: 900;
 }

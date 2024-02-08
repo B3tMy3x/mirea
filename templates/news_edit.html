@@ -19,7 +19,7 @@
             </p>
         {% endfor %}
         <p class="news_form_text">{{ form.tags.label }}</p>
-        {{ form.tags(class="form") }}
+        {{ form.tags(class="form", placeholder='Через ";"') }}
         {% for error in form.tags.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
