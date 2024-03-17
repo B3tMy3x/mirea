@@ -4,4 +4,5 @@ sqlalchemy
 flask_login
 flask_wtf
 flask_uploads
-
+WTForms
+argparse
